@@ -1,11 +1,14 @@
 import { Component } from 'react'
 import { TransportMode, LinesList, Line } from '../types';
+import ModeLinesGrid from './ModeLinesGrid';
 
 type LinesDashboardState = {
   lines: LinesList
 };
 
 export default class LinesDashboard extends Component<{}, LinesDashboardState> {
+
+  public readonly transportModes: Array<TransportMode> = [ 'metro', 'tram', 'bus' ];
 
   constructor(props: {}) {
     super(props);
@@ -20,9 +23,7 @@ export default class LinesDashboard extends Component<{}, LinesDashboardState> {
   }
 
   componentDidMount(): void {
-    const transportModes: Array<TransportMode> = [ 'bus', 'metro', 'tram' ];
-  
-    transportModes.forEach(async (transportMode) => {
+    this.transportModes.forEach(async (transportMode) => {
       const linesUrl = `${process.env.REACT_APP_RTM_API_URL}/getLines/${transportMode}`;
 
       const response = await fetch(linesUrl);
@@ -49,16 +50,10 @@ export default class LinesDashboard extends Component<{}, LinesDashboardState> {
 
   render() {
     return (
-      <div>
-        <p>{this.state.lines.metro.length} metro lines</p>
-        {this.state.lines.bus.length} bus lines
-        <ul>
-          {this.state.lines.bus.map((line, index) => {
-            return (
-              <li key={index}>{line.PublicCode}</li>
-            )
-          })}
-        </ul>
+      <div className='lines-dashboard'>
+        {
+          this.transportModes.map((mode, index) => <ModeLinesGrid key={index} mode={mode} lines={this.state.lines[mode]}/>)
+        }
       </div>
     )
   }
