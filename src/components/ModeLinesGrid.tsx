@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Line, TransportMode } from '../types'
 import LineSquare from './LineSquare'
+import '../style/ModeLinesGrid.scss';
 
 type ModeLinesGridProps = {
   mode: TransportMode,

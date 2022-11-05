@@ -1,0 +1,17 @@
+@import './variables';
+
+.line-square {
+  --line-color: red;
+  background-color: var(--line-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.0625em 0.125em;
+
+  .line-name {
+    color: white;
+    -webkit-text-stroke: black 0.046875em;
+    font-weight: 900;
+  }
+}

@@ -1,0 +1,8 @@
+.mode-lines-grid {
+  display: grid;
+  
+  grid-auto-columns: repeat(auto-fit, 1fr);
+  gap: 0px 0px;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+}

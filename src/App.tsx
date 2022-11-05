@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import LineGrid from './components/LinesDashboard';
+import './style/App.scss';
 
 function App() {
 

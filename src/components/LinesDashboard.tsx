@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { TransportMode, LinesList, Line } from '../types';
 import ModeLinesGrid from './ModeLinesGrid';
+import '../style/LinesDashboard.scss';
 
 type LinesDashboardState = {
   lines: LinesList

@@ -1,5 +1,6 @@
 import { Component, CSSProperties } from 'react'
 import { Line } from '../types'
+import '../style/LineSquare.scss';
 
 type LineSquareProps = {
   line: Line
