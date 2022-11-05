@@ -1,11 +1,11 @@
 import { Component } from 'react'
 import { TransportMode, LinesList, Line } from '../types';
 
-type LineGridState = {
+type LinesDashboardState = {
   lines: LinesList
 };
 
-export default class LineGrid extends Component<{}, LineGridState> {
+export default class LinesDashboard extends Component<{}, LinesDashboardState> {
 
   constructor(props: {}) {
     super(props);
