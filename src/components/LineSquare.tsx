@@ -1,4 +1,4 @@
-import { Component, CSSProperties } from 'react'
+import { Component, CSSProperties, KeyboardEvent } from 'react'
 import { Line, Route } from '../types'
 import '../style/LineSquare.scss';
 import LineDetails from './LineDetails';
@@ -18,6 +18,7 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
 
     this.showLineDetails = this.showLineDetails.bind(this);
     this.hideLineDetails = this.hideLineDetails.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
 
     this.state = {
       isShowingLineDetails: false
@@ -26,7 +27,7 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
 
   render() {
     return (
-      <div className={`line-square-wrapper ${this.props.line.PublicCode.toLowerCase()}`}>
+      <div className={`line-square-wrapper ${this.props.line.PublicCode.toLowerCase()}`} onKeyDown={this.handleKeyDown} tabIndex={-1}>
         <div className="line-square" onClick={this.showLineDetails} style={{ '--line-color': this.props.line.color } as CSSProperties}>
           <div className="line-circle"></div>
           <div className="line-name">{this.props.line.PublicCode}</div>
@@ -66,5 +67,13 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
       ...prevState,
       isShowingLineDetails: false
     }));
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Escape':
+        this.hideLineDetails();
+        break;
+    }
   }
 }

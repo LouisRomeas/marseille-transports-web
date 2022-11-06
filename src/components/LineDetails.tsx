@@ -1,4 +1,4 @@
-import { Component, MouseEventHandler } from 'react'
+import { Component } from 'react'
 import { Line, Route } from '../types';
 import '../style/LineDetails.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,7 @@ import RouteDetails from './RouteDetails';
 
 type LineDetailsProps = {
   line: Line,
-  onClose: MouseEventHandler<HTMLDivElement>
+  onClose: () => void
 }
 
 type LineDetailsState = {
@@ -19,7 +19,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
   constructor(props: LineDetailsProps) {
     super(props);
 
-    this.routeChooseHandler = this.routeChooseHandler.bind(this);
+    this.handleRouteChoose = this.handleRouteChoose.bind(this);
 
     this.state = {
       route: undefined
@@ -33,7 +33,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
           this.state.route ? (
             <RouteDetails route={this.state.route} />
           ) : (
-            <RouteChoice routes={this.props.line.routes} color={this.props.line.color} onRouteChoose={this.routeChooseHandler} />
+            <RouteChoice routes={this.props.line.routes} color={this.props.line.color} onRouteChoose={this.handleRouteChoose} />
           )
         }
         <div className="close-button" onClick={this.props.onClose}>
@@ -43,7 +43,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
     )
   }
 
-  routeChooseHandler(route: Route): void {
+  handleRouteChoose(route: Route): void {
     this.setState((prevState) => ({ ...prevState, route: route }));
   }
 }

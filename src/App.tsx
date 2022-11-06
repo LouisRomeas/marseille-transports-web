@@ -1,4 +1,3 @@
-import React from 'react';
 import LineGrid from './components/LinesDashboard';
 import './style/App.scss';
 
