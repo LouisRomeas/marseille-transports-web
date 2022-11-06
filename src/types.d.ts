@@ -39,5 +39,29 @@ export type Route = {
   'operator': string,
   'lineRef': string,
   'DirectionStations': string,
-  'DirectionStationsSqli': string
+  'DirectionStationsSqli': string,
+
+  'stops': Array<Stop>
+}
+
+export type Stop = {
+  'id': string,
+  'refNEtex': string,
+  'sqlistationId': string,
+  'sqlilineNumber': string,
+  'pointId': string,
+  'lineId': string,
+  'operator': string,
+  'lineRef': string,
+  'Name': string,
+  'Description': string,
+  'StopRef': string,
+  'type': string,
+  'postCode': string,
+  'Longitude': string,
+  'Latitude': string,
+  'sqliLepiloteId': string,
+  'pmr': string,
+  'code3l': string,
+  'PdfNameHoraire': string
 }

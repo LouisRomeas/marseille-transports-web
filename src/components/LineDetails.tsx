@@ -4,6 +4,7 @@ import '../style/LineDetails.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import RouteChoice from './RouteChoice';
+import RouteDetails from './RouteDetails';
 
 type LineDetailsProps = {
   line: Line,
@@ -30,7 +31,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
       <div className='line-details'>
         {
           this.state.route ? (
-            <div></div>
+            <RouteDetails route={this.state.route} />
           ) : (
             <RouteChoice routes={this.props.line.routes} color={this.props.line.color} onRouteChoose={this.routeChooseHandler} />
           )
@@ -44,6 +45,5 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
 
   routeChooseHandler(route: Route): void {
     this.setState((prevState) => ({ ...prevState, route: route }));
-    console.log(route);
   }
 }

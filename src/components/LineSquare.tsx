@@ -41,9 +41,9 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
 
   showLineDetails() {
 
-    const linesUrl = `${process.env.REACT_APP_RTM_API_URL}/getRoutes/${this.props.line.id}`;
+    const routesUrl = `${process.env.REACT_APP_RTM_API_URL}/getRoutes/${this.props.line.id}`;
 
-    fetch(linesUrl)
+    fetch(routesUrl)
       .then(res => res.json())
       .then(json => {
         const routes: Array<Route> = [];
