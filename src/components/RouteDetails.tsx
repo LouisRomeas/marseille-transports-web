@@ -1,10 +1,13 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Component } from 'react'
+import { Component, CSSProperties } from 'react'
 import { Route, Stop } from '../types'
+import '../style/RouteDetails.scss';
+import StopInfo from './StopInfo';
 
 type RouteDetailsProps = {
-  route: Route
+  route: Route,
+  color: string
 }
 
 type RouteDetailsState = {
@@ -36,13 +39,13 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
 
   render() {
     return (
-      <div className='route-details'>
-        <div className="title">{this.props.route.DirectionStations}</div>
+      <div className='route-details' style={{ '--line-color': this.props.color } as CSSProperties}>
+        <div className="title">Direction : <span className="route-direction">{this.props.route.DirectionStations}</span></div>
         <ul className="stops">
           {
             this.state.stops.length ?
               this.state.stops.map((stop: Stop, index) => (
-                <li key={index} className="stop">{stop.Name}</li>
+                <StopInfo stop={stop} key={index} color={this.props.color} />
               )) :
               (
                 <FontAwesomeIcon icon={faSpinner} fontSize='2em' className='spinner' />

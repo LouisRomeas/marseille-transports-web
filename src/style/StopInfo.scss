@@ -1,0 +1,33 @@
+@import './variables';
+
+.stop {
+  position: relative;
+  padding: 0.5em;
+  background-color: change-color($bright, $alpha: 0.75);
+  border-radius: 0.5em;
+  margin-block-end: 1em;
+  color: $dark-gray;
+
+  &::before {
+    font-size: 1em;
+    background: white;
+    border: .25em solid var(--line-color);
+    border-radius: 50%;
+    content: "";
+    left: -1.9em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1em;
+    aspect-ratio: 1 / 1;
+  }
+
+  .stop-top {
+    display: flex;
+
+    .stop-name {
+      font-weight: bold;
+      font-size: 1.15em;
+    }
+  }
+}
