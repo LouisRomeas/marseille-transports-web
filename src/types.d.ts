@@ -21,5 +21,23 @@ export type Line = {
   'sqliSort': string,
   'school': string,
   'PdfNamePlan': string,
-  'PdfNameHoraire': string
+  'PdfNameHoraire': string,
+
+  'routes': Array<Route>
+}
+
+export type Route = {
+  'id': string,
+  'refNEtex': string,
+  'sqlistationId': string,
+  'sqlilineNumber': string,
+  'pointId': string,
+  'lineId': string,
+  'sqliOrdering': string,
+  'DirectionRef': string,
+  'Direction': string,
+  'operator': string,
+  'lineRef': string,
+  'DirectionStations': string,
+  'DirectionStationsSqli': string
 }

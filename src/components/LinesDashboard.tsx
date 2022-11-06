@@ -33,7 +33,9 @@ export default class LinesDashboard extends Component<{}, LinesDashboardState> {
 
       for (const key in json.data) {
         if (Object.prototype.hasOwnProperty.call(json.data, key)) {
-          modeLines.push(json.data[key]);
+          const line: Line = json.data[key];
+          line.routes = [];
+          modeLines.push(line);
         }
       }
 
