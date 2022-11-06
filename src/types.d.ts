@@ -60,8 +60,124 @@ export type Stop = {
   'postCode': string,
   'Longitude': string,
   'Latitude': string,
-  'sqliLepiloteId': string,
+  'sqliLepiloteId': string,webbus
   'pmr': string,
   'code3l': string,
   'PdfNameHoraire': string
+}
+
+export type XmlParsedRealTimeHours = {
+  "elements": [
+     {
+        "type": "element",
+        "name": "ns1:getStationDetailsResponse",
+        "attributes": {
+           "xmlns:ns1": "http://ws/webbus/org/"
+        },
+        "elements": [
+           {
+              "type": "element",
+              "name": "ns1:comLieu",
+              "elements": [
+                 {
+                    "type": "text",
+                    "text": "Flammarion Siphon"
+                 }
+              ]
+           },
+           {
+              "type": "element",
+              "name": "ns1:passage",
+              "elements": [
+                 {
+                    "type": "element",
+                    "name": "ns1:nomLigneCial",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "81"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:heurePassageReel",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "14:25"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:passageReel",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "true"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:destination",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "Le Pharo"
+                       }
+                    ]
+                 }
+              ]
+           },
+           {
+              "type": "element",
+              "name": "ns1:passage",
+              "elements": [
+                 {
+                    "type": "element",
+                    "name": "ns1:nomLigneCial",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "81"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:heurePassageReel",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "14:39"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:passageReel",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "true"
+                       }
+                    ]
+                 },
+                 {
+                    "type": "element",
+                    "name": "ns1:destination",
+                    "elements": [
+                       {
+                          "type": "text",
+                          "text": "Le Pharo"
+                       }
+                    ]
+                 }
+              ]
+           }
+        ]
+     }
+  ]
 }

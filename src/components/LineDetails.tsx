@@ -31,7 +31,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
       <div className='line-details'>
         {
           this.state.route ? (
-            <RouteDetails route={this.state.route} color={this.props.line.color} />
+            <RouteDetails route={this.state.route} line={this.props.line} color={this.props.line.color} />
           ) : (
             <RouteChoice routes={this.props.line.routes} color={this.props.line.color} onRouteChoose={this.handleRouteChoose} />
           )

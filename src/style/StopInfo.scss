@@ -29,5 +29,16 @@
       font-weight: bold;
       font-size: 1.15em;
     }
+
+    .next-times {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      margin-inline-start: 1em;
+
+      .time {
+        margin-inline-end: 0.5em;
+      }
+    }
   }
 }
