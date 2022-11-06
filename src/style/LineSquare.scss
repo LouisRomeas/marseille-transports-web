@@ -1,17 +1,34 @@
 @import './variables';
 
 .line-square {
-  --line-color: red;
-  background-color: var(--line-color);
+  --line-color: gray;
+  --circle-diameter: 4em;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 0.0625em 0.125em;
+  position: relative;
+  z-index: 0;
+  min-height: var(--circle-diameter);
+  
+  .line-circle {
+    position: absolute;
+    z-index: -1;
+    background-color: var(--line-color);
+    width: var(--circle-diameter);
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+  }
 
   .line-name {
-    color: white;
-    -webkit-text-stroke: black 0.046875em;
+    color: var(--line-color);
+    -webkit-text-stroke: $dark-gray 0.0625em;
+    font-size: 1.5em;
     font-weight: 900;
+    background-color: white;
+    padding: 0 calc(1em / 3);
+    border-radius: 0.125em;
+    border: 0.125em solid var(--line-color);
+    min-width: calc(10em / 3);
+    text-align: center;
   }
 }
