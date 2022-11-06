@@ -15,7 +15,10 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
 
   constructor(props: LineSquareProps) {
     super(props);
+
     this.showLineDetails = this.showLineDetails.bind(this);
+    this.hideLineDetails = this.hideLineDetails.bind(this);
+
     this.state = {
       isShowingLineDetails: false
     }
@@ -23,11 +26,14 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
 
   render() {
     return (
-      <div className="line-square" onClick={this.showLineDetails} style={{ '--line-color': this.props.line.color } as CSSProperties}>
-        <div className="line-circle"></div>
-        <div className="line-name">{this.props.line.PublicCode}</div>
+      <div className={`line-square-wrapper ${this.props.line.PublicCode.toLowerCase()}`}>
+        <div className="line-square" onClick={this.showLineDetails} style={{ '--line-color': this.props.line.color } as CSSProperties}>
+          <div className="line-circle"></div>
+          <div className="line-name">{this.props.line.PublicCode}</div>
+        </div>
+
         {this.state.isShowingLineDetails ? (
-          <LineDetails />
+          <LineDetails line={this.props.line} onClose={this.hideLineDetails} />
         ) : null}
       </div>
     )
@@ -53,5 +59,12 @@ export default class LineSquare extends Component<LineSquareProps, LineSquareSta
           isShowingLineDetails: true
         }));
       })
+  }
+
+  hideLineDetails() {
+    this.setState(prevState => ({
+      ...prevState,
+      isShowingLineDetails: false
+    }));
   }
 }

@@ -1,0 +1,25 @@
+@import './variables';
+
+.line-details {
+  position: fixed;
+  z-index: 10;
+  inset: 2vh 2vw;
+  background-color: change-color($dark-gray, $lightness: 25%, $alpha: 0.9);
+  
+  --padding: 1vw;
+  border-radius: var(--padding);
+  padding: var(--padding);
+
+  .close-button {
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+    cursor: pointer;
+
+    transition: opacity 150ms ease-out;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
