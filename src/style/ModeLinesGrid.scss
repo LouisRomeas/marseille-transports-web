@@ -1,5 +1,4 @@
 .mode-lines-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-template-rows: repeat(auto-fill, 120px);
+  display: flex;
+  flex-wrap: wrap;
 }
