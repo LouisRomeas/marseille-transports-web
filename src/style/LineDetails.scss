@@ -9,6 +9,7 @@
   --padding: 1vw;
   border-radius: var(--padding);
   padding: var(--padding);
+  overflow-y: scroll;
 
   .close-button {
     position: absolute;
