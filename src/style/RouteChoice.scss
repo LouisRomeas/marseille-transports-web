@@ -1,0 +1,37 @@
+@import './variables';
+
+.route-choice-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .route-choice-label {
+    font-size: 1.5em;
+  }
+  
+  .route-choice {
+    --line-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+  
+    .route {
+      font-size: 1.5em;
+      margin: 0.5em 0.5em;
+      background-color: $bright;
+      color: $dark-gray;
+      padding: 0.25em 0.5em;
+      border-radius: 0.5em;
+      border: 0.125em solid var(--line-color);
+
+      transition: filter 150ms ease-out;
+
+      &:hover {
+        filter: brightness(75%);
+      }
+    }
+  }
+}

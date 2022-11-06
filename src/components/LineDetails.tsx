@@ -17,6 +17,9 @@ type LineDetailsState = {
 export default class LineDetails extends Component<LineDetailsProps, LineDetailsState> {
   constructor(props: LineDetailsProps) {
     super(props);
+
+    this.routeChooseHandler = this.routeChooseHandler.bind(this);
+
     this.state = {
       route: undefined
     }
@@ -29,7 +32,7 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
           this.state.route ? (
             <div></div>
           ) : (
-            <RouteChoice routes={this.props.line.routes} />
+            <RouteChoice routes={this.props.line.routes} color={this.props.line.color} onRouteChoose={this.routeChooseHandler} />
           )
         }
         <div className="close-button" onClick={this.props.onClose}>
@@ -37,5 +40,10 @@ export default class LineDetails extends Component<LineDetailsProps, LineDetails
         </div>
       </div>
     )
+  }
+
+  routeChooseHandler(route: Route): void {
+    this.setState((prevState) => ({ ...prevState, route: route }));
+    console.log(route);
   }
 }
