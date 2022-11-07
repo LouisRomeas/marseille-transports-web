@@ -3,27 +3,53 @@
 .route-details {
   --line-color: gray;
 
-  .title {
-    .route-direction {
-      font-weight: bold;
-    }
-  }
+  .content {
+    display: grid; 
+    grid-auto-flow: column; 
+    grid-auto-rows: 1fr; 
+    grid-template-columns: 2fr 3fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px;
+    justify-content: center; 
+    align-content: center; 
+    justify-items: stretch; 
+    align-items: center;
 
-  .stops {
-    position: relative;
-    list-style-type: none;
-    padding-inline-start: 2.5em;
-    
-    &::before {
-      background-color: var(--line-color);
-      border-radius: 100vw;
-      bottom: 0;
-      content: "";
-      left: .625em;
-      position: absolute;
-      top: .5em;
-      bottom: .5em;
-      width: .5em;
+    .stops-wrapper {
+      max-height: calc(96vh - 2vw);
+      overflow-y: scroll;
+      
+      .title {
+        .route-direction {
+          font-weight: bold;
+        }
+      }
+  
+      .stops {
+        position: relative;
+        list-style-type: none;
+        padding-inline: 2.5em 1em;
+        
+        &::before {
+          background-color: var(--line-color);
+          border-radius: 100vw;
+          bottom: 0;
+          content: "";
+          left: .625em;
+          position: absolute;
+          top: .5em;
+          bottom: .5em;
+          width: .5em;
+        }
+      }
+    }
+
+    .map {
+      height: calc(96vh - 2vw);
+
+      .route-map {
+        height: 100%;
+      }
     }
   }
 }
