@@ -48,7 +48,7 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
               this.state.nextTimes.map((time, index) => {
                 
                 const eta = Math.max(
-                  Math.floor( ( time.getTime() - Date.now() ) / 60e3),
+                  Math.floor( ( time.getTime() - (new Date().setSeconds(0)) ) / 60e3),
                   0
                 );
 
