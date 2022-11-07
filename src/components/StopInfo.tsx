@@ -15,8 +15,14 @@ type StopInfoState = {
 
 export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
 
+  private readonly refreshDelay = 10e3;
+
+  private interval?: ReturnType<typeof setInterval>;
+
   constructor(props: StopInfoProps) {
     super(props);
+
+    this.updateNextTimes = this.updateNextTimes.bind(this);
 
     this.state = {
       nextTimes: []
@@ -24,9 +30,49 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
   }
 
   componentDidMount(): void {
+    this.updateNextTimes().then(() => {
+      this.interval = setInterval(
+        this.updateNextTimes,
+        this.refreshDelay
+      );
+    });
+  }
+
+  render() {
+    return (
+      <li className="stop">
+        <div className="stop-top">
+          <div className="stop-name">{this.props.stop.Name}</div>
+          <div className="next-times">
+            {
+              this.state.nextTimes.map((time, index) => {
+                
+                const eta = Math.max(
+                  Math.floor( ( time.getTime() - Date.now() ) / 60e3),
+                  0
+                );
+
+                if (eta > 100) console.log(time);
+
+                return (
+                  <div key={index + eta} className="time">{
+                    eta > 0 ?
+                      `${eta}min` :
+                      `Imminent`
+                  }</div>
+                )
+              })
+            }
+          </div>
+        </div>
+      </li>
+    )
+  }
+
+  private async updateNextTimes(): Promise<void> {
     const realTimeHoursUrl = `${process.env.REACT_APP_RTM_API_URL}/spoti/getStationDetails?nomPtReseau=${ this.props.stop.sqlistationId.padStart(5, '0') }`;
 
-    fetch(realTimeHoursUrl)
+    return fetch(realTimeHoursUrl)
       .then(res => res.text())
       .then(xml => {
         const parsedRealTimeHours = xml2js(xml) as XmlParsedRealTimeHours;
@@ -44,38 +90,13 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
 
           const nextTime = new Date();
           nextTime.setHours(timeAsArray[0], timeAsArray[1]);
-          if (nextTime < (new Date())) nextTime.setDate( nextTime.getDate() + 1 );
+          // if (nextTime < (new Date())) nextTime.setDate( nextTime.getDate() + 1 );
           
           nextTimes.push(nextTime);
         });
 
         this.setState(prevState => ({ ...prevState, nextTimes: nextTimes }));
 
-      })
-  }
-
-  render() {
-    return (
-      <li className="stop">
-        <div className="stop-top">
-          <div className="stop-name">{this.props.stop.Name}</div>
-          <div className="next-times">
-            {
-              this.state.nextTimes.map((time, index) => {
-                
-                const eta = Math.max(
-                  Math.floor( ( time.getTime() - Date.now() ) / 60e3),
-                  0
-                )
-
-                return (
-                  <div key={index} className="time">{ eta }min</div>
-                )
-              })
-            }
-          </div>
-        </div>
-      </li>
-    )
+      });
   }
 }
