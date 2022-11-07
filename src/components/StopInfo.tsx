@@ -15,7 +15,7 @@ type StopInfoState = {
 
 export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
 
-  private readonly refreshDelay = 10e3;
+  private readonly refreshDelay = 1e3;
 
   private interval?: ReturnType<typeof setInterval>;
 
@@ -78,6 +78,8 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
         const parsedRealTimeHours = xml2js(xml) as XmlParsedRealTimeHours;
         
         const nextTimes: Array<Date> = [];
+
+        if (parsedRealTimeHours.elements === undefined) return;
 
         parsedRealTimeHours.elements[0].elements.forEach(element => {
           if (
