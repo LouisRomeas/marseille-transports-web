@@ -69,7 +69,7 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
                 this.state.stops.map((stop, index) => {
 
                   return (
-                    <StopMarker key={index} position={ [parseFloat(stop.Latitude), parseFloat(stop.Longitude)] } color={this.props.color} />
+                    <StopMarker key={index} stop={stop} color={this.props.color} />
                   )
                 })
               }

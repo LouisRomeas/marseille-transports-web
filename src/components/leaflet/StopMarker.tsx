@@ -1,8 +1,10 @@
 import { divIcon } from "leaflet"
-import { Marker, MarkerProps } from "react-leaflet"
+import { Marker } from "react-leaflet"
 import '../../style/leaflet/StopMarker.scss';
+import { Stop } from "../../types";
 
-type StopMarkerProps = MarkerProps & {
+type StopMarkerProps = {
+  stop: Stop
   color: string
 }
 
@@ -18,6 +20,6 @@ export default function StopMarker(props: StopMarkerProps) {
   });
 
   return (
-    <Marker {...props} icon={icon} />
+    <Marker {...props} position={ [parseFloat(props.stop.Latitude), parseFloat(props.stop.Longitude)] } icon={icon} />
   )
 }
