@@ -1,0 +1,12 @@
+.stop-marker {
+  font-size: 1em;
+  background: white;
+  border: .25em solid var(--line-color);
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  width: 1em;
+  aspect-ratio: 1 / 1;
+}

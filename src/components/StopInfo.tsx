@@ -30,12 +30,16 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
   }
 
   componentDidMount(): void {
-    this.updateNextTimes().then(() => {
-      this.interval = setInterval(
-        this.updateNextTimes,
-        this.refreshDelay
-      );
-    });
+    this.updateNextTimes();
+    this.interval = setInterval( () => {
+      this.updateNextTimes();
+    },
+      this.refreshDelay
+    );
+  }
+
+  componentWillUnmount(): void {
+    clearInterval(this.interval);
   }
 
   render() {

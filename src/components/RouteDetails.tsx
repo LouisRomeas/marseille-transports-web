@@ -4,8 +4,9 @@ import { Component, CSSProperties } from 'react'
 import { Line, Route, Stop } from '../types'
 import '../style/RouteDetails.scss';
 import StopInfo from './StopInfo';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import StopMarker from './leaflet/StopMarker';
 
 type RouteDetailsProps = {
   route: Route,
@@ -59,16 +60,19 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
             </ul>
           </div>
           <div className="map">
-            <MapContainer className='route-map' center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+            <MapContainer className='route-map' center={[43.305488, 5.415316]} zoom={13} scrollWheelZoom={false}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={[51.505, -0.09]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
+              {
+                this.state.stops.map((stop, index) => {
+
+                  return (
+                    <StopMarker key={index} position={ [parseFloat(stop.Latitude), parseFloat(stop.Longitude)] } color={this.props.color} />
+                  )
+                })
+              }
             </MapContainer>
           </div>
         </div>

@@ -46,9 +46,10 @@
 
     .map {
       height: calc(96vh - 2vw);
+      margin-top: 2.5em;
 
       .route-map {
-        height: 100%;
+        height: calc(100% - 2.5em);
       }
     }
   }
