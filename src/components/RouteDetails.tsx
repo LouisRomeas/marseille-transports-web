@@ -3,10 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Component, CSSProperties } from 'react'
 import { Line, Route, Stop } from '../types'
 import '../style/RouteDetails.scss';
+import MapWrapper from './leaflet/MapWrapper';
 import StopInfo from './StopInfo';
-import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import StopMarker from './leaflet/StopMarker';
 
 type RouteDetailsProps = {
   route: Route,
@@ -60,20 +59,7 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
             </ul>
           </div>
           <div className="map">
-            <MapContainer className='route-map' center={[43.305488, 5.415316]} zoom={13} scrollWheelZoom={false}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {
-                this.state.stops.map((stop, index) => {
-
-                  return (
-                    <StopMarker key={index} stop={stop} color={this.props.color} />
-                  )
-                })
-              }
-            </MapContainer>
+            <MapWrapper stops={this.state.stops} color={this.props.color} />
           </div>
         </div>
       </div>
