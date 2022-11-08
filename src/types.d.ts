@@ -50,7 +50,7 @@ export type Stop = {
   'sqlistationId': string,
   'sqlilineNumber': string,
   'pointId': string,
-  'lineId': string,
+  'lineId': string,RouteDetails
   'operator': string,
   'lineRef': string,
   'Name': string,
@@ -67,111 +67,111 @@ export type Stop = {
 }
 
 export type XmlParsedRealTimeHours = {
-  "elements": [
+  'elements': [
      {
-        "type": "element",
-        "name": "ns1:getStationDetailsResponse",
-        "attributes": {
-           "xmlns:ns1": "http://ws/webbus/org/"
+        'type': 'element',
+        'name': 'ns1:getStationDetailsResponse',
+        'attributes': {
+           'xmlns:ns1': 'http://ws/webbus/org/'
         },
-        "elements": [
+        'elements': [
            {
-              "type": "element",
-              "name": "ns1:comLieu",
-              "elements": [
+              'type': 'element',
+              'name': 'ns1:comLieu',
+              'elements': [
                  {
-                    "type": "text",
-                    "text": "Flammarion Siphon"
+                    'type': 'text',
+                    'text': 'Flammarion Siphon'
                  }
               ]
            },
            {
-              "type": "element",
-              "name": "ns1:passage",
-              "elements": [
+              'type': 'element',
+              'name': 'ns1:passage',
+              'elements': [
                  {
-                    "type": "element",
-                    "name": "ns1:nomLigneCial",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:nomLigneCial',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "81"
+                          'type': 'text',
+                          'text': '81'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:heurePassageReel",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:heurePassageReel',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "14:25"
+                          'type': 'text',
+                          'text': '14:25'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:passageReel",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:passageReel',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "true"
+                          'type': 'text',
+                          'text': 'true'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:destination",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:destination',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "Le Pharo"
+                          'type': 'text',
+                          'text': 'Le Pharo'
                        }
                     ]
                  }
               ]
            },
            {
-              "type": "element",
-              "name": "ns1:passage",
-              "elements": [
+              'type': 'element',
+              'name': 'ns1:passage',
+              'elements': [
                  {
-                    "type": "element",
-                    "name": "ns1:nomLigneCial",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:nomLigneCial',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "81"
+                          'type': 'text',
+                          'text': '81'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:heurePassageReel",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:heurePassageReel',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "14:39"
+                          'type': 'text',
+                          'text': '14:39'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:passageReel",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:passageReel',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "true"
+                          'type': 'text',
+                          'text': 'true'
                        }
                     ]
                  },
                  {
-                    "type": "element",
-                    "name": "ns1:destination",
-                    "elements": [
+                    'type': 'element',
+                    'name': 'ns1:destination',
+                    'elements': [
                        {
-                          "type": "text",
-                          "text": "Le Pharo"
+                          'type': 'text',
+                          'text': 'Le Pharo'
                        }
                     ]
                  }
@@ -180,4 +180,13 @@ export type XmlParsedRealTimeHours = {
         ]
      }
   ]
+}
+
+export type Vehicle = {
+   'Line': string,
+   'Direction': string,
+   'Latitude': number,
+   'Longitude': number,
+   'ValidUntilTime': string,
+   'Id': string
 }

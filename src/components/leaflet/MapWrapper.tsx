@@ -1,10 +1,12 @@
 import { LatLngBoundsExpression } from 'leaflet'
 import { MapContainer, TileLayer } from 'react-leaflet'
-import { Stop } from '../../types'
+import { Stop, Vehicle } from '../../types'
 import StopsGroup from './StopsGroup'
+import VehiclesGroup from './VehiclesGroup'
 
 type MapWrapperProps = {
   stops: Array<Stop>,
+  vehicles: Array<Vehicle>,
   color: string
 }
 
@@ -22,6 +24,7 @@ export default function MapWrapper(props: MapWrapperProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <StopsGroup stops={props.stops} color={props.color} />
+      <VehiclesGroup vehicles={props.vehicles} color={props.color} />
     </MapContainer>
   )
 }

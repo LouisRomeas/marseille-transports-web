@@ -1,7 +1,7 @@
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Component, CSSProperties } from 'react'
-import { Line, Route, Stop } from '../types'
+import { Line, Route, Stop, Vehicle } from '../types'
 import '../style/RouteDetails.scss';
 import MapWrapper from './leaflet/MapWrapper';
 import StopInfo from './StopInfo';
@@ -14,16 +14,24 @@ type RouteDetailsProps = {
 }
 
 type RouteDetailsState = {
-  stops: Array<Stop>
+  stops: Array<Stop>,
+  vehicles: Array<Vehicle>
 }
 
 export default class RouteDetails extends Component<RouteDetailsProps, RouteDetailsState> {
 
+  private readonly vehiclesRefreshDelay = 1e3;
+
+  private interval?: ReturnType<typeof setInterval>;
+
   constructor(props: RouteDetailsProps) {
     super(props);
 
+    this.updateVehicles = this.updateVehicles.bind(this);
+
     this.state = {
-      stops: []
+      stops: [],
+      vehicles: []
     }
   }
 
@@ -37,7 +45,18 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
           ...prevState,
           stops: json.data
         }));
-      })
+      }
+    );
+    
+    this.updateVehicles();
+    this.interval = setInterval(
+      this.updateVehicles,
+      this.vehiclesRefreshDelay
+    )
+  }
+
+  componentWillUnmount(): void {
+    clearInterval(this.interval);
   }
 
   render() {
@@ -59,10 +78,30 @@ export default class RouteDetails extends Component<RouteDetailsProps, RouteDeta
             </ul>
           </div>
           <div className="map">
-            <MapWrapper stops={this.state.stops} color={this.props.color} />
+            <MapWrapper stops={this.state.stops} vehicles={this.state.vehicles} color={this.props.color} />
           </div>
         </div>
       </div>
     )
+  }
+
+  private async updateVehicles(): Promise<void> {
+    
+    const vehiclesUrl = `${process.env.REACT_APP_RTM_API_URL}/liveVehiclesPosition?lines=${this.props.line.id}`;
+
+    fetch(vehiclesUrl)
+      .then(res => res.json())
+      .then((json: Array<Vehicle>) => {
+        const filteredVehicles: Array<Vehicle> = [];
+
+        json.forEach(vehicle => {
+          if (vehicle.Direction === this.props.route.DirectionRef) filteredVehicles.push(vehicle);
+        });
+
+        this.setState(prevState => ({
+          ...prevState,
+          vehicles: filteredVehicles
+        }));
+      })
   }
 }

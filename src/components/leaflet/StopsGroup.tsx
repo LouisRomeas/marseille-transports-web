@@ -8,7 +8,7 @@ type StopsGroupProps = {
   color: string
 }
 
-export default function StopGroup(props: StopsGroupProps) {
+export default function StopsGroup(props: StopsGroupProps) {
   
   const map = useMap();
 

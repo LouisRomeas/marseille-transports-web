@@ -31,9 +31,8 @@ export default class StopInfo extends Component<StopInfoProps, StopInfoState> {
 
   componentDidMount(): void {
     this.updateNextTimes();
-    this.interval = setInterval( () => {
-      this.updateNextTimes();
-    },
+    this.interval = setInterval(
+      this.updateNextTimes,
       this.refreshDelay
     );
   }
