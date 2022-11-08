@@ -10,6 +10,10 @@
   border-radius: var(--padding);
   padding: var(--padding);
 
+  @media screen and (max-width: 1200px) {
+    overflow-y: scroll;
+  }
+
   .close-button {
     position: absolute;
     top: var(--padding);

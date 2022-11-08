@@ -15,9 +15,20 @@
     justify-items: stretch; 
     align-items: center;
 
+    @media screen and (max-width: 1200px) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+    }
+
     .stops-wrapper {
       max-height: calc(96vh - 2vw);
       overflow-y: scroll;
+
+      @media screen and (max-width: 1200px) {
+        max-height: none;
+      }
       
       .title {
         .route-direction {
